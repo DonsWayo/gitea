@@ -286,7 +286,6 @@ func RegisterRoutes(m *macaron.Macaron) {
 
 	// ***** START: User *****
 	m.Group("/user", func() {
-		m.Get("/login", user.SignIn)
 		m.Post("/login", bindIgnErr(auth.SignInForm{}), user.SignInPost)
 		m.Group("", func() {
 			m.Combo("/login/openid").

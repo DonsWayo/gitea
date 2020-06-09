@@ -84,7 +84,7 @@ func Toggle(options *ToggleOptions) macaron.Handler {
 				}
 
 				ctx.SetCookie("redirect_to", setting.AppSubURL+ctx.Req.URL.RequestURI(), 0, setting.AppSubURL)
-				ctx.Redirect(setting.AppSubURL + "/user/login")
+				ctx.Redirect(setting.AppSubURL)
 				return
 			} else if !ctx.User.IsActive && setting.Service.RegisterEmailConfirm {
 				ctx.Data["Title"] = ctx.Tr("auth.active_your_account")
@@ -119,7 +119,7 @@ func Toggle(options *ToggleOptions) macaron.Handler {
 		if !options.SignOutRequired && !ctx.IsSigned && !auth.IsAPIPath(ctx.Req.URL.Path) &&
 			len(ctx.GetCookie(setting.CookieUserName)) > 0 {
 			ctx.SetCookie("redirect_to", setting.AppSubURL+ctx.Req.URL.RequestURI(), 0, setting.AppSubURL)
-			ctx.Redirect(setting.AppSubURL + "/user/login")
+			ctx.Redirect(setting.AppSubURL)
 			return
 		}
 
